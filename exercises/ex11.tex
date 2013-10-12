@@ -1,0 +1,129 @@
+\documentclass[a4paper,12pt]{article}
+
+% Use the Classic Thesis style
+%
+% \usepackage[nochapters]{classicthesis}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Use text fonts
+%
+\usepackage{lmodern}  % the Latin Modern fonts which is an enhanced version of the Computer Modern fonts
+% \usepackage{tgschola}  % the Gyre Schola fonts which is an enhanced version of the New Centrury Schoolbook fonts
+
+% Use math fonts
+%
+% \usepackage{concmath}  % the Concrete Math fonts
+% \usepackage{euler}  % the Euler Math fonts
+% \usepackage{kerkis}  % the Kerkis fonts
+
+% Some font packages that provide math font may override the text font, the
+% following three commands reset it to the default.
+%
+% For the Latin Modern fonts
+%
+% \renewcommand{\rmdefault}{lmr}
+% \renewcommand{\sfdefault}{lmss}
+% \renewcommand{\ttdefault}{lmtt}
+%
+% For the Gyre Schola fonts
+%
+% \renewcommand{\rmdefault}{qcs}
+
+\usepackage{amsmath}
+
+% Use the MH bundle
+%
+% \usepackage{mhsetup}
+% \usepackage{mathtools}
+% \usepackage{mathstyle}
+% \usepackage{breqn}
+% \usepackage{empheq}
+% \usepackage{flexisym}
+
+% Use AMS-style theorem
+%
+\usepackage{amsthm}
+% \theoremstyle{definition}
+% \newtheorem{theorem}{Theorem}
+
+% Use MATH formulas in PARagraph mode Typesetting Inference Rules
+% 
+\usepackage{mathpartir}
+
+% \usepackage{tikz}
+% \usepackage{tikz-qtree}
+% \usepackage{bigfoot}
+
+% New commands
+%
+\newcommand{\appl}[2]{#1\inparens{#2}}
+\newcommand{\eval}[2]{#1 \Longrightarrow #2}
+\newcommand{\redc}[2]{#1 \longrightarrow #2}
+
+\include{prelude}
+\include{pltkwds}
+
+% Front elements
+%
+\title{
+ Programming Languages and Types \\~\\
+ \textbf{Exercise 11}
+}
+\author{
+ Yi Dai
+}
+
+\begin{document}
+
+\maketitle
+
+
+\section{$\lambda$-Calculus vs. $\lambda$-Based Language}
+
+Many languages have claimed to be based on $\lambda$-calculus.  Being $\lambda$-calculus-based does
+\emph{not} mean they include $\lambda$-calculus as a subset or they offer every feature $\lambda$-calculus
+offers.  Actually there are quite some differences.
+\begin{enumerate}
+ \item $\lambda$-calculus uses \emph{static scoping}.  This sounds strange because nowadays almost all
+  languages (whether functional or imperative) that supports functions (whether higher-order or just
+  first-order), use static scoping.  However, this point deserves an emphasis because the first functional
+  language that claimed to be $\lambda$-calculus, mamely \emph{Lisp}, ironically uses \emph{dynamic scoping}.
+  This \emph{bug} or \emph{mis-feature} were not discovered for over two decades until Scheme came out.
+  Then after over one decade, static scoping was finnally written into the Common Lisp ANSI standard.  What
+  a historical lession!
+ \item $\lambda$-calculus supports \emph{symbolic computation} while most $\lambda$-calculus-based languages
+  do not.\footnote{Actually, most languages do not support symbolic computation.  Exceptions may be those
+  languages that were designed for AI, such as Lisp and Prolog.  Though their support is via a new data type
+  for symbols, which is kinda \emph{indirect}.}  Symbolic computation allows a free variable to compute to
+  itself if there is no binding associated to it.  So in $\lambda$-calculus, the variable $x$ evaluates to
+  itself.  Whereas in most functional languages, you get a run-time error complaining that the variable is
+  \emph{unbound}.
+ \item $\lambda$-calculus features full $\beta$-reduction.  In other words, evaluation goes under $lambda$.
+  Whereas in most functional language, evaluation stops in front of a $lambda$.  Instead of a
+  $lambda$-abstraction with a fully-reduced body, you get a closure.  Although we gain some efficiency, we
+  also miss part of the beauty of $\lambda$-calculus.  For example, we cannot see how Church-numerals work.
+\end{enumerate}
+
+\section{Nameless $\lambda$-Calculus}
+
+\subsection{$\alpha$-Conversion: Pros and Cons}
+
+\subsection{$\lambda$-Calculus Using De-Bruijn Indices}
+
+\subsection{Evaluation Semantics for $\lambda_{bv}$}
+
+\section{Substitution vs. Environment}
+
+\subsection{Substitution-Based Evaluation Semantics for $\lambda_{ao}$}
+
+\subsection{Environment-Based Evaluation Semantics for $\lambda_{bn}$}
+
+\section{Computational $\lambda$-Calculus}
+
+\subsection{$\lambda$-Calculus Extended with Monads}
+
+\subsection{Typing $\lambda_c$}
+
+\end{document}

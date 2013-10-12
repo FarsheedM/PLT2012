@@ -1,0 +1,144 @@
+\documentclass[a4paper,12pt]{article}
+
+% Use the Classic Thesis style
+%
+% \usepackage[nochapters]{classicthesis}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Use text fonts
+%
+\usepackage{lmodern}  % the Latin Modern fonts which is an enhanced version of the Computer Modern fonts
+% \usepackage{tgschola}  % the Gyre Schola fonts which is an enhanced version of the New Centrury Schoolbook fonts
+
+% Use math fonts
+%
+% \usepackage{concmath}  % the Concrete Math fonts
+% \usepackage{euler}  % the Euler Math fonts
+% \usepackage{kerkis}  % the Kerkis fonts
+
+% Some font packages that provide math font may override the text font, the
+% following three commands reset it to the default.
+%
+% For the Latin Modern fonts
+%
+% \renewcommand{\rmdefault}{lmr}
+% \renewcommand{\sfdefault}{lmss}
+% \renewcommand{\ttdefault}{lmtt}
+%
+% For the Gyre Schola fonts
+%
+% \renewcommand{\rmdefault}{qcs}
+
+\usepackage{amsmath}
+
+% Use the MH bundle
+%
+% \usepackage{mhsetup}
+% \usepackage{mathtools}
+% \usepackage{mathstyle}
+% \usepackage{breqn}
+% \usepackage{empheq}
+% \usepackage{flexisym}
+
+% Use AMS-style theorem
+%
+\usepackage{amsthm}
+% \theoremstyle{definition}
+% \newtheorem{theorem}{Theorem}
+
+% Use MATH formulas in PARagraph mode Typesetting Inference Rules
+% 
+\usepackage{mathpartir}
+
+% \usepackage{tikz}
+% \usepackage{tikz-qtree}
+% \usepackage{bigfoot}
+
+% New commands
+%
+\include{prelude}
+\include{pltkwds}
+
+% Front elements
+%
+\title{
+ Programming Languages and Types \\~\\
+ \textbf{Homework 12}
+}
+\author{
+ Yi Dai
+}
+
+\begin{document}
+
+\maketitle
+
+\section{Simply-Typed $\lambda$-Calculus}
+
+\subsection{Typing Derivation}
+
+Tell whether each of the following terms in the simply-typed $\lamb$-calculus with all the extensions 
+introduced in the lecture is well-typed in the empty typing context.  If it is, give a typing derivation
+for it; if not, give the reason.  For very large terms, you can name their sub-terms and type them
+individually.
+
+\begin{enumerate}
+ \item $\pred\ (\succ\ \fals)$
+ \item $\lamb f : \NatT \rarr \NatT . \lamb n : \NatT . f\ (f\ (\succ\ n))$
+ \item $\ifkw\ (\isze\ (\succ\ \zero))\ \thkw\ \true\ \elkw\ \zero$
+ \item $\{one = \succ\ \zero, tru = \true\}\ \askw\ \{tru : \BlnT, one : \NatT\}$
+ \item $\letk\ b = \fals\ \inkw\ (\isze\ b)$
+ \item $\letk\ p = (\zero, \succ\ \zero)\ \inkw\ (\sndp\ p, \fstp\ p)$
+ \item $\case\ (\inlh\ \zero)\ \ofkw\ \inlh\ x \Rarr \fals\ |\ \inrh\ x \Rarr \true$
+ \item
+  \begin{align*}
+   \fixp\ (& \lamb\ fise : \NatT \rarr \BlnT\ . \\
+           & \quad \lamb\ n : \NatT\ . \\
+           & \quad \quad \ifkw\ (\isze\ n) \\
+           & \quad \quad \quad \thkw\ \true \\
+           & \quad \quad \quad \elkw\ \ifkw\ (\isze\ (\pred\ n)) \\
+           & \quad \quad \quad \quad \quad \thkw\ \fals \\
+           & \quad \quad \quad \quad \quad \elkw\ fise\ (\pred\ (\pred\ n))\ )
+  \end{align*}
+\end{enumerate}
+
+\subsection{Programming with Extensions}
+
+\begin{enumerate}
+ \item Complete the addition function $add : \NatT \rarr \NatT \rarr \NatT$ in the simply-typed
+  $\lamb$-calculus with base type $\NatT$ and extension the fixed-point operator \fixp.
+  \begin{align*}
+   add = \fixp\ (& \lamb\ fadd : \NatT \rarr \NatT \rarr \NatT\ .\ ?)
+  \end{align*}
+\end{enumerate}
+
+\section{System-$\mathcal{F}$}
+
+\subsection{Parametric Polymorphism}
+
+\begin{enumerate}
+ \item Define a function called $twice$ that applies a function to an argument twice.
+ \item Use the function $twice$ to define a function called $thrice$ that applies a
+  function to an argument for three times.
+ \item Define a function called $compose$ that composes two functions.
+\end{enumerate}
+
+\subsection{Typing Church-Encodings}
+
+Refer to the Church-encodings for numerals, booleans and lists.\footnote{The encodings
+for booleans I showed in the exercise session is kinda over-generalized.  You should
+use the simpler one given in the slides.}  Note that, for all exercises, you should also
+give the type of the whole term.
+
+\begin{enumerate}
+ \item Define the multiplication function $cmul$ for Church-numerals.  Do it first using
+ the $cadd$ function already given in the slides.  Then try to give a definition directly.
+ (\emph{Hint}: For the latter, consider how many times the product of two Church-numerals
+ means to iterating a function.)
+ \item Define the boolean-or function $cor$ for Church-booleans.
+ \item Define the $crev$ that reverses a Church-encoded list.
+\end{enumerate}
+
+\end{document}
